@@ -1,14 +1,18 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1>Returns</h1>
-
-  <fieldset>
-    <div>
-      <legend>Return Reasons</legend>
-      Add or edit return reasons you would like to show the customers during the return request process.
+<div class="mx-auto w-full">
+  <%= simple_form_for @storefront, class: "w-full h-screen flex flex-col", data: { controller: 'nested-form', nested_form_index_value: 'NEW_RECORD' } do |form| %>
+    <div class="mx-auto md:w-2/3 w-full pl-5">
+      <h1 class="text-[32px] font-bold leading-[135%]">Returns</h1>
+      <fieldset class="reasons flex">
+        <div class="w-1/2">
+          <legend class="text-xl font-bold leading-140%">Return Reasons</legend>
+          <p class="text-sm leading-[140%] tracking-[-0.154px]">Add or edit return reasons you would like to show the customers during the return request process.</p>
+        </div>
+            <%= render partial: "form", locals: { form: form, storefront: @storefront } %>
+      </fieldset>
     </div>
-
-    <div>
-      <%= render "form", storefront: @storefront %>
+    <div class="w-full bg-white mt-auto justify-between flex items-center pr-5 py-3 pl-252">      
+      <div>Remember to save your changes before leaving this page</div>
+      <%= form.submit 'Save', class: 'btn-primary bg-yellow-500 rounded' %>      
     </div>
-  </fieldset>
+  <% end %>
 </div>

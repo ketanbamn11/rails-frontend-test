@@ -1,5 +1,5 @@
 class StorefrontsController < ApplicationController
-  before_action :set_storefront, only: %i[ show edit update destroy ]
+  before_action :set_storefront, only: %i[ show edit update destroy sort]
 
   # GET /storefronts or /storefronts.json
   def index
@@ -57,6 +57,12 @@ class StorefrontsController < ApplicationController
     end
   end
 
+  def sort
+    @reasons= @storefront.reasons.find(reasons_params[:id])
+    @reasons.insert_at(reasons_params[:ordering].to_i)
+    head :no_content
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_storefront
@@ -79,5 +85,9 @@ class StorefrontsController < ApplicationController
           ]
         }
       )
+    end
+
+    def reasons_params
+      params.require(:reasons_attributes).permit(:id,:ordering)
     end
 end

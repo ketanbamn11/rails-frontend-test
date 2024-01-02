@@ -5,25 +5,28 @@
         label: 'Displayed reason',
         required: true,
         placeholder: 'Enter Displayed reason...',
-        hint: "Provide a friendly description for the reason that will be displayed to the customer."
+        hint: "Provide a friendly description for the reason that will be displayed to the customer.",
+        input_html: { class: 'bg-[#F8F8FB] border-[#E3E3E3]' }
     %>
     <%=
       f.input :code,
         label: 'Internal return code',
         required: true,
         placeholder: 'Enter Internal return code...',
-        hint: "For internal use only. Must be unique. To aid in analytics, we do not recommend changing the code once set."
+        hint: "For internal use only. Must be unique. To aid in analytics, we do not recommend changing the code once set.",
+        input_html: { class: 'bg-[#F8F8FB] border-[#E3E3E3]' }
     %>
     <%= f.input :active,
-      label: 'Reason is visible to customers'
+      label: 'Return Reason is Hidden',
+      placeholder: 'Enter Internal return code...',
+      hint: "When hidden, this return reason is not offered as an option to the customers. Click on the eye icon to make the return reason visible."
     %>
-    <%= f.input :ordering,
-      label: 'Ordering',
-      placeholder: 'Enter Ordering...',
-      hint: "The order in which the reason will be displayed to the customer. Reasons with lower numbers will be displayed first."
-    %>
-
-    <button type="button" class="btn-danger" data-action="nested-form#removeAssociation">Remove</button>
-    <%= f.hidden_field :_destroy %>
+    <div class="flex items-center justify-between">
+      <button type="button" class="btn-danger border bg-white text-red-500 border-red-500 border-solid text-base rounded" data-action=" click->modal#hide nested-form#removeAssociation">Delete</button>
+      <%= f.hidden_field :_destroy %>
+      <button type="button" data-action="click->modal#hide" class="hover:bg-blue-700 text-black bg-yellow-500 text-base py-2 px-4 rounded">
+        Continue
+      </button>
+    </div>
   </div>
 </div>

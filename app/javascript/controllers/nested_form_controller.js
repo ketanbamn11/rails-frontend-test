@@ -3,14 +3,18 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["addItem", "template"]
   static values = { index: String }
+  hasForm = false; // Flag to track form existence
 
   addAssociation(event) {
     console.log('addAssociation')
     event.preventDefault()
-    console.log(this.indexValue);
-    const child_index_name = this.indexValue
-    const content = this.templateTarget.innerHTML.replace(new RegExp(child_index_name, "g"), new Date().valueOf())
-    this.addItemTarget.insertAdjacentHTML('beforebegin', content)
+    if (!this.hasForm) {
+      console.log(this.indexValue);
+      const child_index_name = this.indexValue;
+      const content = this.templateTarget.innerHTML.replace(new RegExp(child_index_name, "g"), new Date().valueOf());
+      this.addItemTarget.insertAdjacentHTML('beforebegin', content);
+      this.hasForm = true; // Update the flag to indicate the form's presence
+    }
   }
 
   removeAssociation(event, isRemoveBundle) {
@@ -25,6 +29,7 @@ export default class extends Controller {
     if (!isRemoveBundle && isBundleItem) {
       this.checkBundle(event)
     }
+    this.hasForm = false
   }
   getInputClass(isBundleItem, isRemoveBundle) {
     return isBundleItem ? '.bundle-destroy' : isRemoveBundle ? '.order-destroy' : ''

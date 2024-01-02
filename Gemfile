@@ -31,6 +31,12 @@ gem "jbuilder"
 
 gem 'simple_form'
 
+gem 'acts_as_list'
+
+gem 'inline_svg'
+
+gem 'requestjs-rails'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

@@ -1,0 +1,44 @@
+<ul data-controller="sortable" class="divide-y divide-gray-200" data-storefront-id=<%= storefront.id %>>
+  <% storefront.reasons.ordered.each do |reason| %>
+    <li class="flex py-3 px-3 items-center justify-between" data-sortable-id="<%= reason.id %>">
+      <div class="items-center flex">
+        <%= inline_svg_tag "move.svg", class: "handle w-5 cursor-move flex-shrink-0 text-gray-400 mr-2 h-auto" %>
+        <div class="ml-3 flex items-center">
+          <% if reason.active%>
+            <%= inline_svg_tag "eye.svg", class: "handle w-5 cursor-move flex-shrink-0 text-gray-400 mr-2 h-auto" %>
+            <p class="text-sm font-medium text-gray-900"><%= reason.label %></p>
+          <% else %>
+            <%= inline_svg_tag "eye-off.svg", class: "handle w-5 cursor-move flex-shrink-0 text-gray-400 mr-2 h-auto" %>
+            <p class="text-sm font-medium text-gray-900"><%= reason.label %></p>
+          <% end %>
+        </div>
+      </div>
+      <div class="text-blue-500 text-[12px]" data-controller="modal">
+        <button data-action="click->modal#show" class="text-sm font-medium" >
+          Edit
+        </button>
+        <div class="hidden desktop-overlay fixed flex items-center justify-center" style="top:100px;left:100px" data-modal-target="modal">
+          <div class="desktop-overlay-trans"></div>
+          <div class="bg-white modal-box rounded-lg p-8 max-w-xl mx-auto" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+            <button type="button" data-action="click->modal#hide" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <h2 class="text-lg font-semibold text-gray-800 mb-1 mt-0" id="modal-headline">
+              Edit Return Reason
+            </h2>
+            <div class="border-divide"></div>
+            <div class="">
+              <p class="text-gray-700">
+                <%= form.simple_fields_for :reasons, reason do |reason_fields| %>
+                  <%= render 'reason', f: reason_fields %>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

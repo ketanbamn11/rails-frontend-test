@@ -1,6 +1,10 @@
 import { Application } from "@hotwired/stimulus"
+import SortableController from "./sortable_controller"
+
 
 const application = Application.start()
+
+application.register("sortable", SortableController)
 
 // Configure Stimulus development experience
 application.debug = false

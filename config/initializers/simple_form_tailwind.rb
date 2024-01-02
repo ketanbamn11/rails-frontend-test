@@ -38,7 +38,7 @@ SimpleForm.setup do |config|
   # vertical forms
   #
   # vertical default_wrapper
-  config.wrappers :vertical_form, tag: 'div', class: 'mb-4' do |b|
+  config.wrappers :vertical_form, tag: 'div', class: 'gap' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -47,20 +47,20 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: 'block', error_class: 'text-red-500'
-    b.use :input, class: 'shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out', error_class: 'border-red-500', valid_class: 'border-green-400'
+    b.use :input, class: 'shadow appearance-none border rounded w-full py-2 px-3 bg-[#F8F8FB]  focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out', error_class: 'border-red-500', valid_class: 'border-green-400'
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
   end
 
   # vertical input for boolean (aka checkboxes)
-  config.wrappers :vertical_boolean, tag: 'div', class: 'mb-4 flex items-start', error_class: '' do |b|
+  config.wrappers :vertical_boolean, tag: 'div', class: 'mb-4 gap flex items-start', error_class: '' do |b|
     b.use :html5
     b.optional :readonly
     b.wrapper tag: 'div', class: 'flex items-center h-5' do |ba|
       ba.use :input, class: 'focus:ring-2 focus:ring-indigo-500 ring-offset-2 h-4 w-4 text-indigo-600 border-gray-300 rounded'
     end
-    b.wrapper tag: 'div', class: 'ml-3 text-sm' do |bb|
-      bb.use :label, class: 'block', error_class: 'text-red-500'
+    b.wrapper tag: 'div', class: 'ml-3' do |bb|
+      bb.use :label, class: 'text-sm block', error_class: 'text-red-500'
       bb.use :hint, wrap_with: { tag: 'p', class: 'block text-grey-700 text-xs italic' }
       bb.use :full_error, wrap_with: { tag: 'p', class: 'block text-red-500 text-xs italic' }
     end
@@ -101,7 +101,7 @@ SimpleForm.setup do |config|
     end
     b.wrapper tag: 'div', class: 'inline-flex space-x-1' do |ba|
       # ba.use :input, class: 'flex w-auto w-auto text-gray-500 text-sm border-gray-300 rounded p-2', error_class: 'text-red-500', valid_class: 'text-green-400'
-      ba.use :input, class: 'flex w-auto w-auto shadow appearance-none border border-gray-300 rounded w-full p-2 bg-white focus:outline-none focus:border-blue-500 text-gray-400 leading-4 transition-colors duration-200 ease-in-out'
+      ba.use :input, class: 'flex w-auto w-auto shadow appearance-none border border-gray-300 rounded w-full p-2 focus:outline-none focus:border-blue-500 text-gray-400 leading-4 transition-colors duration-200 ease-in-out'
     end
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
